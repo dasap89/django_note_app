@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class Note(models.Model):
+    note_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return note_text

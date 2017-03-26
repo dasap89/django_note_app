@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from . models import Note
 
-# Create your views here.
+class NoteList(ListView):
+    model = Note
+    context_object_name = 'list_of_notes'
+    template_name = 'index.html'
