@@ -3,7 +3,7 @@
     "model": "note_app.Note",
     "pk": 1,
     "fields": {
-      "note_text": "It is a note for testing purpose.",
+      "note_text": "It is a note loaded from fixtures.",
       "created_at": "2012-02-21 10:28:45"
     }
   },
