@@ -1,15 +1,17 @@
 {% extends "base.html" %}
+{% load note_tags %}
+
 
 {% block content %}
     <h2>Notes</h2>
     {% if object_list %}
-    <ul>
+    <ul class="list-group">
         {% for note in object_list %}
-            <li>{{ note.note_text }}</li>
+            {% show_one_note note.id %}
         {% endfor %}
     </ul>
     {% else %}
-    <ul>
+    <ul class="list-group">
         There are no notes.
     </ul>
     {% endif %}

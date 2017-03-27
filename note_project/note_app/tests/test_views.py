@@ -21,7 +21,7 @@ class TestViews(TestCase):
         """
         response = self.client.get(reverse('note_app:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "It is a note for testing purpose.")
+        self.assertContains(response, "It is a note loaded from fixtures.")
 
     def test_view_used_template(self):
         """
@@ -48,6 +48,14 @@ class TestViews(TestCase):
         response = self.client.get(reverse('note_app:index'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['object_list']), 2)
-        self.assertContains(response, "testing")
+        self.assertContains(response, "fixture")
         self.assertContains(response, "Test")
+
+    def test_view_check_templatetag(self):
+        """
+        Test that note is rendered with tamplatetag
+        """
+        response = self.client.get(reverse('note_app:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "<li class=\"list-group-item\">")
 
