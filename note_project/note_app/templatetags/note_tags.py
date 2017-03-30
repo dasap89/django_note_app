@@ -5,18 +5,19 @@ from copy import copy
 
 register = template.Library()
 
+
 @register.inclusion_tag('one_note.html', takes_context=True)
 def show_one_note(context, note_id):
-    
+
     try:
-    	note = Note.objects.get(pk=note_id)
+        note = Note.objects.get(pk=note_id)
     except:
-    	raise TemplateSyntaxError("'show_one_content' received invalid argument. It should be id of note.")
+        raise TemplateSyntaxError(
+            "'show_one_content' received invalid argument. Note ID is needed."
+        )
 
     context = copy(context)
-    
-    context.update({
-	'note': note
-    })
+
+    context.update({'note': note})
 
     return context

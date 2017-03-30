@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase
 from django.core.urlresolvers import reverse
-from note_app.models import Note
+from ..models import Note
 
 
 class TestViews(TestCase):
@@ -59,3 +59,32 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "<li class=\"list-group-item\">")
 
+    def test_view_note_cannot_be_add_with_invalid_data(self):
+        """
+        Test that data can't be added by NoteList with invalid data
+        """
+        before = Note.objects.all().count()
+        response = self.client.get(reverse('note_app:index'))
+        data = {'node_text': 'It\'s note'}
+        response = self.client.post(
+            reverse('note_app:index'),
+            data,
+        )
+        self.assertEqual(response.status_code, 200)
+        after = Note.objects.all().count()
+        self.assertEqual(before, after)
+
+    def test_view_note_can_be_added_with_valid_data(self):
+        """
+        Test that data can be added by NoteList with valid data
+        """
+        before = Note.objects.all().count()
+        response = self.client.get(reverse('note_app:index'))
+        data = {'note_text': 'It is a valid note.'}
+        response = self.client.post(
+            reverse('note_app:index'),
+            data,
+        )
+        self.assertEqual(response.status_code, 200)
+        after = Note.objects.all().count()
+        self.assertNotEqual(before, after)

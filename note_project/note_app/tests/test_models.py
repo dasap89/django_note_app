@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase
 from django.core.urlresolvers import reverse
-from note_app.models import Note
+from ..models import Note
 
 
 class TestModels(TestCase):
@@ -23,4 +23,3 @@ class TestModels(TestCase):
         Note.objects.create(note_text="Test")
         data_in_model = Note.objects.all().count()
         self.assertEqual(data_in_model, 2)
-

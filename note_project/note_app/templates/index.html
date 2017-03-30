@@ -4,6 +4,16 @@
 
 {% block content %}
     <h2>Notes</h2>
+    
+    <form action="{% url 'note_app:index' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">Note</span>
+            <input id="id_note_text" type="text" class="form-control" name="note_text" placeholder="Enter your note here">
+        </div>
+        <button type="submit" class="btn btn-default">Save note</button>
+    </form>
+
     {% if object_list %}
     <ul class="list-group">
         {% for note in object_list %}
