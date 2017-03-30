@@ -29,11 +29,4 @@ class NoteList(FormMixin, ListView):
         if self.form.is_valid():
             self.object = self.form.save()
 
-        else:
-            note_list = Note.objects.all()
-            return render(
-                request,
-                'index.html',
-                {'object_list': note_list, 'form': self.form}
-            )
         return self.get(request, *args, **kwargs)
