@@ -13,12 +13,12 @@ class NoteList(FormMixin, ListView):
     form_class = NoteForm
 
     def get_queryset(self):
-        queryset = super(NoteList, self).get_queryset()
+        queryset = super().get_queryset()
         self.form = NoteForm()
         return queryset
 
     def get_context_data(self, **kwargs):
-        context = super(NoteList, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['form'] = self.form
         return context
 
