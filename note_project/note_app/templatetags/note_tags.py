@@ -11,7 +11,7 @@ def show_one_note(context, note_id):
 
     try:
         note = Note.objects.get(pk=note_id)
-    except:
+    except ObjectDoesNotExist:
         raise TemplateSyntaxError(
             "'show_one_content' received invalid argument. Note ID is needed."
         )

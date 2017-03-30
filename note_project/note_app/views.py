@@ -28,5 +28,6 @@ class NoteList(FormMixin, ListView):
 
         if self.form.is_valid():
             self.object = self.form.save()
+            self.form.errors['success'] = 'Saved'
 
         return self.get(request, *args, **kwargs)
